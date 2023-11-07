@@ -11,6 +11,7 @@ import Images from './pages/Images';
 import Settings from './pages/Settings'
 import User from './pages/User';
 import { ReactDOM } from 'react';
+import Test from './components/Test';
 const App = () => {
   return (
     <BrowserRouter>
@@ -25,7 +26,7 @@ const App = () => {
             <Route path='/article' element={<Articles/>}/>
             <Route path='/image' element={<Images/>}/>
             <Route path='/settings' element={<Settings/>}/>
-            <Route path='/user' element={<User/>}/>
+            <Route path='/user' element={<Test/>}/>
         </Routes>
     </div>
     </div>

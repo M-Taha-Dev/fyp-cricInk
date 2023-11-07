@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Settings = () => {
+  const [profile, setprofile] = useState({})
   return (
-    <div>Settings</div>
+    <div>
+      Settingss
+    </div>
   )
 }
 

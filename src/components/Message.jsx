@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import InputMessage from './OutputMessage'
-import OutputMessage from './InputMessage'
+import InputMessage from './InputMessage'
+import OutputMessage from './OutputMessage'
 
 const Message = ({ msg }) => {
 
@@ -12,12 +12,12 @@ const Message = ({ msg }) => {
     }, [msg]);
     return (
         <div className='m-2'>
-            <div ref={messageContainerRef} className="flex-1 space-y-6 overflow-y-auto rounded-xl bg-slate-100 p-4 text-sm leading-6 text-slate-900 shadow-sm  sm:text-base sm:leading-7"
+            <div ref={messageContainerRef} className="h-screen flex-1 space-y-6 rounded-xl bg-slate-100 p-4 text-sm leading-6 text-slate-900 shadow-sm  sm:text-base sm:leading-7"
             >
 
-                <div style={{ height: '90vh' }} className="flex w-full flex-col-reverse rounded-lg" >
+                <div style={{ height: '100%' }} className="flex w-full flex-col-reverse rounded-lg" >
                     {msg?.map((m) => (
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col overflow-y-scroll'>
                             {m.input && <InputMessage messageText={m.input} />}
                             {m.output && <OutputMessage messageText={m.output} />}
                         </div>
