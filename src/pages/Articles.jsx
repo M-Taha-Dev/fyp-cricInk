@@ -2,8 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import Message from '../components/Message'
 import InputBar from '../components/InputBar'
 import fetchPlayerNames from '../utils/NER';
+import { changeValue } from '../redux/intent';
+import { useDispatch } from 'react-redux';
 // const { MongoClient } = require('mongodb');
 const Articles = () => {
+  const dispatch = useDispatch()
+
     const [msg, setMsg] = useState([{}]);
     const messageContainerRef = useRef(null);
     const [mg, setMg] = useState([])
@@ -13,12 +17,12 @@ const Articles = () => {
     }
     useEffect(() => {
         if (messageContainerRef.current) {
-          messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
           templateSelection()
         }
       }, [msg]);
     const [playerName, setPlayerName] = useState('')
     const [articleType, setArticleType] = useState('')
+
 
     async function connectToMongoDB() {
       // Connection to the MongoDB server running on the default port
@@ -74,29 +78,25 @@ const Articles = () => {
 
 
     }
-
-
-
     const addMessage = async(input) => {
         const inputValue = replaceSpacesWithPlus(input)
         fetchPlayerNames(inputValue).then(
           data => {
             setPlayerName(data.player_name)
             setArticleType(data.article_type)
+            dispatch(changeValue(data.article_type))
+
           }
         )
-        console.log('player name: ' + playerName);
-        console.log('article_type: ' + articleType)
         const output = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non ea at eligendi molestias esse placeat voluptate illum, sint alias beatae id eaque accusamus nobis architecto debitis. Numquam incidunt ex unde!'
         const message = {input: input, output: output}
         setMsg([message,...msg])
     }
-
-
   return (
-    <div className='w-full h-screen flex flex-col justify-between'>
+    <div className='w-full h-screen flex  flex-col justify-between  '>
         <div className='h-8 text-xl font-bold font-sans flex justify-center items-center'>Article Generation</div>
-        <div  ref={messageContainerRef} className='h-5/6 w-full overflow-y-auto rounded-lg'><Message  msg={msg}/></div>
+        <div className='h-full w-full 
+        rounded-lg'><Message  msg={msg} player_name={playerName} article_type={articleType}/></div>
         <div >
             <InputBar addMessage={addMessage}/>
         </div>

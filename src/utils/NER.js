@@ -12,6 +12,8 @@ async function fetchPlayerNames(query) {
     }
 
     const data = await response.json();
+    console.log('the output of API is:')
+    console.log(data);
     return data;
   } catch (error) {
     // Handle any errors that occurred during the fetch

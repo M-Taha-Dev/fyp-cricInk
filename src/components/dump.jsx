@@ -3,6 +3,7 @@ import getArticle from '../articles/comparison_template';
 import getPerformance from '../articles/performance_template';
 import getComparison from '../articles/comparison_template';
 import { useDispatch, useSelector } from 'react-redux';
+import { changeValue } from '../redux/intent';
 
 
     
@@ -68,23 +69,25 @@ const ArticleContent = ({ title, contentSections }) => {
 const Test = ({player_name, article_type}) => {
 const intent = useSelector((state) => state.intent.value)
  const dispatch = useDispatch()
+ console.log('intent of the user: ' + intent);
 const comparison_template = getArticle()
 const performance_template = getPerformance()
-const [article, setArticle] = useState([])
+const [article, setArticle] = useState(null)
 var write = null
 const articleSelector = () => {
-
-  console.log(article)
 
     console.log('in test file: ' + intent)
     var intent_article = intent + ''
     if (intent_article === 'performance'){
       const temp = getPerformance()
-      setArticle((prevState) => [...prevState, temp]);
+      console.log('inside temp')
+      setArticle(temp)
+      write = temp
     }
     else if (intent_article === 'comparison'){
       const temp1 = getComparison()
-      setArticle((prevState) => [...prevState, temp1]);
+      setArticle(temp1)
+      write = temp1
     }
 }
 useEffect(() => {
@@ -93,9 +96,9 @@ useEffect(() => {
 
   return (
     <div className="App">
-
-      <ArticleContent title={intent + " Analysis"} contentSections={article.length> 0? article[article.length -1]: []} />
-
+      {console.log("the following is the article:")}
+      {console.log(article)}
+      <ArticleContent title="Performance Analysis" contentSections={write} />
     </div>
   );
 };

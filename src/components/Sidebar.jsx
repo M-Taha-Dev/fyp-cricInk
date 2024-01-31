@@ -6,7 +6,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom'
 const Sidebar = () => {
-
     const sidebarButtons = [
            {
             label: 'Dashboard',
@@ -40,16 +39,15 @@ const Sidebar = () => {
     ]
 
   return (
-    <div className='w-full h-screen flex flex-col border rounded-lg mr-2'>
+    <div className='w-full bg-black h-screen flex flex-col  text-white mr-2'>
         <div className='w-full h-1/6 mt-8 flex items-start justify-center'>
             <h1 className='text-3xl font-bold'>CricInk</h1>
         </div>
         <div>
             {sidebarButtons.map((btn) => (
-                <Link to={btn.link} id={btn.label} className='flex cursor-pointer items-center justify-start w-auto p-3 m-1  rounded-lg  shadow-sm hover:bg-gray-100'>
+                <Link to={btn.link} id={btn.label} className='flex cursor-pointer items-center justify-start w-auto p-3 m-1  rounded-lg  shadow-sm hover:bg-gray-800'>
                     <span className='mx-2'> {<btn.icon/>}</span>
                     <span className='mx-2'> {btn.label}</span>
-
                 </Link>
             ))}
                 

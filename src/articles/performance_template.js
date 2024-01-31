@@ -13,12 +13,12 @@ function compileComparisonAnalysis(template, variables) {
   }
   function replaceVariablesInTemplate(template, variables) {
     const replacedTemplate = template.map((section) => {
-      const { heading, paragraph } = section;
+      const { heading, paragraph,image } = section;
       const replacedParagraph = paragraph.replace(/{(\w+)}/g, (match, key) => {
         return variables[key] || match;
       });
   
-      return { heading, paragraph: replacedParagraph };
+      return { heading, paragraph: replacedParagraph,image };
     });
   
     return replacedTemplate;
@@ -29,7 +29,7 @@ const performance_template = [
     heading: 'Introduction',
     tag: 'performance',
     paragraph:
-      "{name}, one of the modern-day cricketing sensations, is a right-handed top-order batsman from Pakistan. Known for his elegant stroke play and impeccable timing, Babar has quickly risen to become one of the leading run-scorers in all formats of the game. With an impressive batting average and remarkable consistency, he has earned comparisons with some of the greatest batsmen of all time.",
+      "{name}, one of the modern-day cricketing sensensation, is a right-handed top-order batsman from Pakistan. Known for his elegant stroke play and impeccable timing, Babar has quickly risen to become one of the leading run-scorers in all formats of the game. With an impressive batting average and remarkable consistency, he has earned comparisons with some of the greatest batsmen of all time.",
   },
   {
     heading: 'Most Productive Shot',

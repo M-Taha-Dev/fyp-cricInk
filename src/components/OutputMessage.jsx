@@ -1,7 +1,7 @@
 import React from 'react';
 import Test from './Test';
 
-const OutputMessage = ({ messageText }) => {
+const OutputMessage = ({  player_name, article_type }) => {
   return (
     <div className="flex items-start">
       <img
@@ -9,8 +9,10 @@ const OutputMessage = ({ messageText }) => {
         src="https://dummyimage.com/128x128/363536/ffffff&text=J"
         alt="Sender"
       />
-      <div className="flex h-screen overflow-y-auto rounded-b-xl rounded-tr-xl bg-slate-50 p-4 sm:max-w-md md:max-w-2xl">
-        {<Test/>}
+      <div className="flex flex-col gap-2 h-auto  rounded-b-xl rounded-tr-xl bg-slate-50 p-4 sm:max-w-md md:max-w-2xl">
+        {/* <Test/> */}
+        <Test/>
+
       </div>
       <div
         className="mr-2 mt-1 flex flex-col-reverse gap-2 text-slate-500 sm:flex-row"
